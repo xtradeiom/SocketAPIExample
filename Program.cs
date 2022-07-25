@@ -7,10 +7,12 @@ using System.Text;
 try { 
     byte[] bytes = new byte[1024];  
     
-    // Establish the remote endpoint for the socket.  
-    IPHostEntry ipHostInfo = Dns.GetHostEntry("socket-api.racelab.global");  
+    // Establish the remote endpoint for the socket.
+    // TODO: Set the remote hostname here
+    IPHostEntry ipHostInfo = Dns.GetHostEntry("hostname here");
     IPAddress ipAddress = ipHostInfo.AddressList[0];  
-    IPEndPoint remoteEP = new IPEndPoint(ipAddress,5000);  
+    // TODO: Set the correct port here
+    IPEndPoint remoteEP = new IPEndPoint(ipAddress,9999);
 
     // Create a TCP/IP  socket.  
     Socket sender = new Socket(ipAddress.AddressFamily,
@@ -25,6 +27,8 @@ try {
         while (true) {
             // Receive the response from the remote device.  
             int bytesRec = sender.Receive(bytes);
+
+            // TODO: Implement logic
 
             Console.WriteLine(Encoding.ASCII.GetString(bytes,0,bytesRec));
         }        
